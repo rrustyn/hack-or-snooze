@@ -101,8 +101,21 @@ class StoryList {
    * Returns the new Story instance
    */
 
-  async addStory( /* user, newStory */) {
+  async addStory(user, newStory) {
     // TODO: complete this function!
+
+    {"token": user.token,
+    "story":
+    "author": newStory.author
+    "title": newStory.title
+    ""
+    }
+    // {"token":"PASTE_YOUR_TOKEN_HERE", "story":
+    // {"author":"Elie Schoppik","title":"Four Tips for Moving Faster as a
+    // Developer",
+    // "url": "https://www.rithmschool.com/blog/developer-productivity"} }
+
+
   }
 }
 
