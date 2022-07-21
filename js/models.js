@@ -39,13 +39,13 @@ class Story {
     let right = 1;
     for (let i = 0; i < this.url.length; i++) {
       if (this.url[left] === '/' && this.url[right] === '/' && (right - left) === 1) {
-        left ++; //start char of url
+        left++; //start char of url
         right++;
-      } else if (this.url[left] === '/' && this.url[right] === '/' || right === this.url.length ) {
+      } else if (this.url[left] === '/' && this.url[right] === '/' || right === this.url.length) {
         left++;
         return this.url.slice(left, right);
       } else if (this.url[left] === '/') {
-        right++
+        right++;
       } else {
         left++;
         right++;
@@ -104,19 +104,34 @@ class StoryList {
   async addStory(user, newStory) {
     // TODO: complete this function!
 
-    {"token": user.token,
-    "story":
-    "author": newStory.author
-    "title": newStory.title
-    ""
-    }
-    // {"token":"PASTE_YOUR_TOKEN_HERE", "story":
-    // {"author":"Elie Schoppik","title":"Four Tips for Moving Faster as a
-    // Developer",
-    // "url": "https://www.rithmschool.com/blog/developer-productivity"} }
+    //   return await axios({
+    //     method: 'post',
+    //     url: `${BASE_URL}/stories`,
+    //     data: {
+    //       token: user.loginToken,
+    //       story: {
+    //         author: newStory.author,
+    //         title: newStory.title,
+    //         url: newStory.url
+    //       }
+    //     }
+    // });
 
+    let response = await axios.post(`${BASE_URL}/stories`,
+      {
+        token: user.loginToken,
+        story: {
+          author: newStory.author,
+          title: newStory.title,
+          url: newStory.url
+        }
+      });
 
+      let newStoryResponse = new Story(response.data.story);
+
+      return newStoryResponse;
   }
+
 }
 
 
@@ -131,13 +146,13 @@ class User {
    */
 
   constructor({
-                username,
-                name,
-                createdAt,
-                favorites = [],
-                ownStories = []
-              },
-              token) {
+    username,
+    name,
+    createdAt,
+    favorites = [],
+    ownStories = []
+  },
+    token) {
     this.username = username;
     this.name = name;
     this.createdAt = createdAt;
