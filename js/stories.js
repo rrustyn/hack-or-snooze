@@ -50,3 +50,22 @@ function putStoriesOnPage() {
 
   $allStoriesList.show();
 }
+
+/** Posts a new story to server, and updates storyList */
+async function submitNewStory(evt) {
+  evt.preventDefault();
+  console.debug("submitNewStory submmited");
+  const submission = {
+    author: $("#author").val(),
+    title: $("#title").val(),
+    url: $("#url").val()
+  };
+
+  const story = await storyList.addStory(currentUser, submission);
+  const $story = generateStoryMarkup(story);
+  $allStoriesList.prepend($story);
+
+  $("#submit-form").hide();
+}
+
+$("#submit-form").on("submit", submitNewStory);

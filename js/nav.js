@@ -4,6 +4,15 @@
  * Handling navbar clicks and updating navbar
  */
 
+
+/** Show submit form when click submit */
+function navSubmitClick(evt) {
+  evt.preventDefault();
+  $("#submit-form").show();
+}
+
+$("#nav-submit").on("click", navSubmitClick);
+
 /** Show main list of all stories when click site name */
 
 function navAllStories(evt) {

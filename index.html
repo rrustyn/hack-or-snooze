@@ -34,6 +34,11 @@
   <div class="navbar-brand">
     <a class="nav-link" href="#" id="nav-all">Hack or Snooze</a>
   </div>
+
+  <div>
+    <a class="nav-link" href="#" id="nav-submit">submit</a>
+  </div>
+
   <div class="nav-right">
     <a class="nav-link" href="#" id="nav-login">login/signup</a>
     <a class="nav-link" href="#" id="nav-user-profile"></a>
@@ -45,7 +50,7 @@
 
 <!-- area for stories (all stories, user stories, favorites) -->
 <section class="stories-container container">
-  <form>
+  <form class="hidden" id="submit-form">
     <label>author: </label>
     <input type="text" id="author" placeholder="author name">
 
@@ -55,7 +60,7 @@
     <label>url: </label>
     <input type="url" id="url" placeholder="story url">
 
-    <button type="submit" id="submit">submit</button>
+    <button type="submit" id="submit-story">submit</button>
   </form>
 
   <!-- loading message (removed by JS after stories loaded) -->

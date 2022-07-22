@@ -24,7 +24,6 @@ class Story {
   /** Parses hostname out of URL and returns it. */
 
   getHostName() {
-    // TODO: complete this function!
     //input: a valid url
     //find the end of the protocol :// and start of resourse /
     //use pointers to find end of // and next / (or end of string)
@@ -34,12 +33,14 @@ class Story {
     //        l
     //        r
 
+    //look up url class on MDN
+
 
     let left = 0;
     let right = 1;
     for (let i = 0; i < this.url.length; i++) {
       if (this.url[left] === '/' && this.url[right] === '/' && (right - left) === 1) {
-        left++; //start char of url
+        left++;
         right++;
       } else if (this.url[left] === '/' && this.url[right] === '/' || right === this.url.length) {
         left++;
@@ -102,8 +103,6 @@ class StoryList {
    */
 
   async addStory(user, newStory) {
-    // TODO: complete this function!
-
     //   return await axios({
     //     method: 'post',
     //     url: `${BASE_URL}/stories`,
@@ -127,9 +126,9 @@ class StoryList {
         }
       });
 
-      let newStoryResponse = new Story(response.data.story);
-
-      return newStoryResponse;
+    let newStory = new Story(response.data.story);
+    this.stories.unshift(newStory);
+    return newStory;
   }
 
 }
