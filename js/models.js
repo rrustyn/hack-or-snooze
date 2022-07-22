@@ -253,4 +253,50 @@ class User {
       return null;
     }
   }
+
+  /** Adds a story to user favorites */
+  async addFavorite(story) {
+    //input: a story
+    //put story in user favorites array, in the front
+    //call API to add story to favorites server user profile
+
+
+    this.favorites.unshift(story);
+
+    const response = await axios.post(
+      `${BASE_URL}/users/${this.username}/favorites/${story.storyId}`,
+      {
+        token: this.loginToken
+      });
+
+    console.debug("The server responded:", response);
+  }
+
+  async removeFavorite(story) {
+    //input: story
+    //remove the story from the array of user stories
+    // - take the storyId, find location in favorites array (indexOf?)
+    //    cut from array
+
+
+    //delete the favorite from db favorites
+    // -its just adding favorites but delete instead of post
+
+    const storyIndex = (
+      this.favorites.findIndex(favorite => favorite.storyId === story.storyId)
+    );
+    this.favorites.splice(storyIndex, 1);
+    console.debug("your token:", this.loginToken);
+    const response = await axios(
+      {
+        url: `${BASE_URL}/users/${this.username}/favorites/${story.storyId}`,
+        method: 'DELETE',
+        data:
+        {
+          token: this.loginToken
+        }
+      });
+
+    console.debug("The server responded:", response);
+  }
 }
