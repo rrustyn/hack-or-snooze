@@ -19,16 +19,17 @@ class Story {
     this.url = url;
     this.username = username;
     this.createdAt = createdAt;
-    //this.favorite = Story.checkIfFavorite();
   }
 
-  // add a boolean favorite constructor
-  // call a static method against user favorites list to set value to t or f
-  //
-  // static checkIfFavorite() {
-  //   return (currentUser.favorites.some(story => story.storyId === this.storyId));
-  // }
+  /** takes in a story ID, returns a story object from server story list */
+  static async getStoryById (id) {
+    let response = await axios({
+      url: `${BASE_URL}/stories/${id}`,
+      method: "GET",
+    });
 
+    return new Story(response.data.story);
+  }
 
 
   /** Parses hostname out of URL and returns it. */
@@ -279,9 +280,11 @@ class User {
         token: this.loginToken
       });
 
+
     console.debug("The server responded:", response);
   }
 
+  /** Removes a story to user favorites */
   async removeFavorite(story) {
     //input: story
     //remove the story from the array of user stories
