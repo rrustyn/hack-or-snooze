@@ -35,23 +35,28 @@ class Story {
 
     //look up url class on MDN
 
+    const url = new URL(this.url);
+    return url.hostname;
 
-    let left = 0;
-    let right = 1;
-    for (let i = 0; i < this.url.length; i++) {
-      if (this.url[left] === '/' && this.url[right] === '/' && (right - left) === 1) {
-        left++;
-        right++;
-      } else if (this.url[left] === '/' && this.url[right] === '/' || right === this.url.length) {
-        left++;
-        return this.url.slice(left, right);
-      } else if (this.url[left] === '/') {
-        right++;
-      } else {
-        left++;
-        right++;
-      }
-    }
+
+    // A complicated way to find a hostname
+    //
+    // let left = 0;
+    // let right = 1;
+    // for (let i = 0; i < this.url.length; i++) {
+    //   if (this.url[left] === '/' && this.url[right] === '/' && (right - left) === 1) {
+    //     left++;
+    //     right++;
+    //   } else if (this.url[left] === '/' && this.url[right] === '/' || right === this.url.length) {
+    //     left++;
+    //     return this.url.slice(left, right);
+    //   } else if (this.url[left] === '/') {
+    //     right++;
+    //   } else {
+    //     left++;
+    //     right++;
+    //   }
+    // }
   }
 }
 
@@ -126,9 +131,9 @@ class StoryList {
         }
       });
 
-    let newStory = new Story(response.data.story);
-    this.stories.unshift(newStory);
-    return newStory;
+    let addStory = new Story(response.data.story);
+    this.stories.unshift(addStory);
+    return addStory;
   }
 
 }
