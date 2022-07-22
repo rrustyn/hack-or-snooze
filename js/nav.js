@@ -4,6 +4,15 @@
  * Handling navbar clicks and updating navbar
  */
 
+/** */
+
+function navFavoritesClick(evt) {
+  evt.preventDefault();
+  hidePageComponents();
+  putStoriesOnPage(currentUser.favorites);
+}
+
+$("#nav-favorites").on("click", navFavoritesClick);
 
 /** Show submit form when click submit */
 function navSubmitClick(evt) {
@@ -19,7 +28,7 @@ function navAllStories(evt) {
   console.debug("navAllStories", evt);
   evt.preventDefault();
   hidePageComponents();
-  putStoriesOnPage();
+  putStoriesOnPage(storyList.stories);
 }
 
 $body.on("click", "#nav-all", navAllStories);
